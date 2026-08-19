@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutri Care - Fresh Fruit & Juice Studio (Gobi)</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #6d28d9;
+            --primary-light: #f5f3ff;
+            --accent: #f59e0b;
+            --text-main: #1e1b4b;
+            --text-muted: #6b7280;
+            --bg-main: #faf5ff;
+            --white: #ffffff;
+            --border: #ddd6fe;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --shadow-subtle: 0 10px 30px rgba(139, 92, 246, 0.05);
+            --shadow-hover: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                linear-gradient(
+                    rgba(250,245,255,0.75),
+                    rgba(243,232,255,0.80)
+                ),
+                url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=1600&auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .top-announcement {
+            background: #4c1d95;
+            color: #ddd6fe;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 15px;
+            letter-spacing: 0.5px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .top-announcement span {
+            display: inline-block;
+            animation: marqueeAnim 15s linear infinite;
+        }
+
+        @keyframes marqueeAnim {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .location-badge {
+            font-size: 12px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active-page {
+            color: var(--primary);
+        }
+
+        nav a:hover::after,
+        nav a.active-page::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .cart-badge {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .cart-badge:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .admin-toggle-btn {
+            background: #2e1065;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active-view {
+            display: block;
+            animation: fadeInPage 0.5s ease-in-out;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .hero-slider-card {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 50%, #c4b5fd 100%);
+            border-radius: 30px;
+            padding: 60px 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(139,92,246,0.15);
+        }
+
+        .floating-bg-item {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.35;
+            animation: floatRandom 6s ease-in-out infinite alternate;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .f-item-1 { top: 15%; left: 8%; }
+        .f-item-2 { bottom: 15%; left: 45%; animation-delay: 1.5s; }
+        .f-item-3 { top: 20%; right: 42%; animation-delay: 3s; }
+
+        @keyframes floatRandom {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(15deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .tag-pill {
+            background: white;
+            color: var(--primary-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 44px;
+            font-weight: 800;
+            color: #3b0764;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: #581c87;
+            margin-bottom: 30px;
+            max-width: 550px;
+            font-weight: 500;
+        }
+
+        .hero-btn {
+            background: #4c1d95;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(76,29,149,0.2);
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .hero-btn:hover {
+            background: #2e1065;
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-card-img {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 4px solid rgba(255,255,255,0.9);
+        }
+
+        .trust-strip {
+            max-width: 1280px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+            gap: 20px;
+        }
+
+        .trust-item {
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border);
+        }
+
+        .trust-icon {
+            font-size: 28px;
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .trust-text h4 { font-size: 14px; }
+        .trust-text p { font-size: 12px; color: var(--text-muted); }
+
+        .menu-section {
+            max-width: 1280px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .menu-category-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 40px 0 20px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+            gap: 25px;
+        }
+
+        .menu-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            transition: 0.4s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .menu-img-container {
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            background: #f3e8ff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-card:hover .menu-img-container img {
+            transform: scale(1.1);
+        }
+
+        .tag-badge-float {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(46,16,101,0.85);
+            color: white;
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 6px;
+            z-index: 2;
+            backdrop-filter: blur(4px);
+        }
+
+        .menu-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .item-info h4 { font-size: 16px; margin-bottom: 6px; }
+        .item-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .card-footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f3e8ff;
+            padding-top: 12px;
+            margin-top: auto;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .unit {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .add-btn {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 2px solid var(--primary);
+            padding: 8px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .sub-dates-box {
+            background: #faf5ff;
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .sub-dates-box label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .sub-dates-box input[type="date"] {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 12px;
+            margin-bottom: 6px;
+            background: white;
+            color: var(--text-main);
+        }
+
+        .checkout-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .checkout-box {
+            background: rgba(255,255,255,0.95);
+            border-top: 6px solid var(--primary);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .checkout-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .checkout-form-grid input,
+        .checkout-form-grid select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            outline: none;
+            background: #faf5ff;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .order-whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            display: block;
+            width: 100%;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .order-whatsapp-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .cart-modal,
+        .invoice-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(46,16,101,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+        }
+
+        .cart-modal { justify-content: flex-end; }
+
+        .cart-drawer {
+            background: white;
+            width: 100%;
+            max-width: 440px;
+            height: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            animation: slideInDrawer 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideInDrawer {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .close-cart {
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .cart-items-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid #f3e8ff;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            background: white;
+            border: 1px solid var(--border);
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .delete-item-btn {
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .delete-item-btn:hover {
+            background: #dc2626;
+            color: white;
+        }
+
+        .invoice-modal {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .invoice-card {
+            background: white;
+            padding: 35px;
+            width: 100%;
+            max-width: 480px;
+            border-radius: var(--radius-lg);
+        }
+
+        .admin-panel {
+            display: none;
+            background: #1e1b4b;
+            color: white;
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 900px;
+            border-radius: var(--radius-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: #2e1065;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .stat-card span {
+            font-size: 26px;
+            font-weight: 800;
+            color: #a78bfa;
+        }
+
+        .order-list-box {
+            background: #2e1065;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            min-height: 120px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .order-item-row {
+            padding: 12px;
+            border-bottom: 1px solid #3b0764;
+            font-size: 13px;
+        }
+
+        .history-section {
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .history-card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+            gap: 20px;
+        }
+
+        .history-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border);
+        }
+
+        .rating-box { display: flex; gap: 5px; margin-bottom: 12px; }
+        .star { font-size: 20px; cursor: pointer; color: #d8b4fe; }
+        .star.active { color: #f59e0b; }
+
+        .feedback-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            resize: none;
+            margin-bottom: 10px;
+        }
+
+        .submit-feedback-btn {
+            background: var(--text-main);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #1e1b4b;
+            color: #c4b5fd;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 13px;
+            margin-top: 60px;
+        }
+
+        @media(max-width:768px) {
+            .hero-slider-card {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+                text-align: center;
+            }
+            .hero-content h1 { font-size: 32px; }
+            .hero-visual { display: none; }
+            .checkout-form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="top-announcement">
+    <span>
+        ✨ 100% Freshly Cut & Hygienically Packed • Direct Home Delivery across Gobi & Localities!
+        🍏 Free Delivery on Orders Above ₹200! 🚀[cite: 5]
+    </span>
+</div>
+
+<header>
+    <div class="logo-box">
+        <div class="logo">🌿 NUTRI CARE</div>
+        <div class="location-badge">Gobi Studio</div>
+    </div>
+
+    <nav>
+        <a id="nav-page1" class="active-page" onclick="switchPage(1)">
+            Page 1: Home & Fresh Menu
+        </a>
+        <a id="nav-page2" onclick="switchPage(2)">
+            Page 2: Subscriptions & Special Packs
+        </a>
+    </nav>
+
+    <div class="header-actions">
+        <div class="cart-badge" id="cart-count" onclick="openCartModal()">
+            🛒 Cart (0)
+        </div>
+
+        <button class="admin-toggle-btn" onclick="toggleAdminPanel()">
+            ⚙️ Admin
+        </button>
+    </div>
+</header>
+
+<!-- ADMIN -->
+<div class="admin-panel" id="adminPanel">
+    <h2>🛠️ Nutri Care Live Management Suite</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h4>Total Orders Today</h4>
+            <span id="stat-orders">0</span>
+        </div>
+        <div class="stat-card">
+            <h4>Total Sales Revenue</h4>
+            <span id="stat-revenue">₹0</span>
+        </div>
+    </div>
+    <p style="margin:20px 0 10px;color:#c4b5fd;">Live Customer Order Log:</p>
+    <div class="order-list-box" id="adminOrderLog">
+        <p style="text-align:center;color:#9ca3af;">No recent orders recorded yet.</p>
+    </div>
+</div>
+
+<!-- ================= PAGE 1 ================= -->
+<div id="page1" class="page-view active-view">
+    <div class="hero-container">
+        <div class="hero-slider-card">
+            <div class="floating-bg-item f-item-1">🍎</div>
+            <div class="floating-bg-item f-item-2">🍍</div>
+            <div class="floating-bg-item f-item-3">🥝</div>
+
+            <div class="hero-content">
+                <span class="tag-pill">Farm to Doorstep Freshness</span>
+                <h1>Fresh Fruit Plates, Cold Juices & Smoothies</h1>
+                <p>
+                    Handpicked quality fruits, chopped fresh daily with zero
+                    added preservatives. Proudly serving Getticheviyur,
+                    Gobichettipalayam & nearby localities.
+                </p>
+                <button class="hero-btn" onclick="switchPage(2)">
+                    Explore Subscriptions & Special Packs ➔
+                </button>
+            </div>
+
+            <div class="hero-visual">
+                <img
+                    src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=700&auto=format&fit=crop&q=80"
+                    alt="Fresh Fruit Bowl"
+                    class="hero-card-img"
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="trust-strip">
+        <div class="trust-item">
+            <div class="trust-icon">🍏</div>
+            <div class="trust-text">
+                <h4>100% Fresh Daily</h4>
+                <p>Selected farm-grade fruit stock</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">🔪</div>
+            <div class="trust-text">
+                <h4>Hygienically Cut</h4>
+                <p>Clean sanitised packing stations</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">🚚</div>
+            <div class="trust-text">
+                <h4>Rapid Local Delivery</h4>
+                <p>Quick doorstep service in Gobi</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="menu-section">
+        <div class="section-header">
+            <div>
+                <h2>Page 1: Core Daily Fresh Offerings</h2>
+                <p>Fresh fruit plates, healthy beverages and nutrition boxes.</p>
+            </div>
+        </div>
+
+        <div class="menu-category-title">🍽️ FRESH FRUIT PLATES & CUT BOXES</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">200g Pack</span>
+                    <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500&auto=format&fit=crop&q=80" alt="Health Plate">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Health Plate</h4>
+                        <p>Watermelon, Papaya, Pineapple, Apple, Corn & Sprouts</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹80</span>
+                            <span class="unit">200g serving</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Health Plate (200g)', 80)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Best Seller</span>
+                    <img src="https://images.unsplash.com/photo-1519996521430-025f992e85a0?w=500&auto=format&fit=crop&q=80" alt="Regular Fruit Plate">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Regular Fruit Plate ⭐</h4>
+                        <p>Watermelon, Papaya, Pineapple, Apple, Grapes, Pomegranate, Corn & Sprouts</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹100</span>
+                            <span class="unit">300g serving</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Regular Fruit Plate (300g)', 100)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Exotic Choice</span>
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=80" alt="Premium Fruit Plate">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Premium Fruit Plate</h4>
+                        <p>Apple, Pomegranate, Grapes, Seasonal Kiwi, Dragon Fruit, Corn & Sprouts</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹130</span>
+                            <span class="unit">500g serving</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Premium Fruit Plate (500g)', 130)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Single Fruit</span>
+                    <img src="https://images.unsplash.com/photo-1517282009859-f000ec3b26fe?w=500&auto=format&fit=crop&q=80" alt="Fresh Papaya Bowl">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Fresh Papaya Bowl</h4>
+                        <p>Sweet ripe hand-cut local papaya chunks packed chilled</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹40</span>
+                            <span class="unit">250g box</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Fresh Papaya Bowl', 40)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Refreshing</span>
+                    <img src="https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?w=500&auto=format&fit=crop&q=80" alt="Watermelon Cubes Box">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Watermelon Cubes Box</h4>
+                        <p>De-seeded succulent sweet red watermelon cubes</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹40</span>
+                            <span class="unit">250g box</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Watermelon Cubes Box', 40)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Immunity</span>
+                    <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=500&auto=format&fit=crop&q=80" alt="Tangy Pineapple Cuts">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Tangy Pineapple Cuts</h4>
+                        <p>Fresh sweet and sour farm pineapple slices with black salt touch</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹50</span>
+                            <span class="unit">250g box</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Tangy Pineapple Cuts', 50)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category-title">🧃 HEALTHY JUICES & TRADITIONAL BEVERAGES</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Traditional Power</span>
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop&q=80" alt="Uluntham Kanji">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Uluntham Kanji</h4>
+                        <p>Nourishing traditional black gram porridge.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹20</span>
+                            <span class="unit">Bowl</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Uluntham Kanji', 20)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Pure & Fresh</span>
+                    <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=500&auto=format&fit=crop&q=80" alt="Fresh Coconut Milk">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Fresh Coconut Milk</h4>
+                        <p>Freshly extracted cooling coconut milk.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹30</span>
+                            <span class="unit">Glass</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Fresh Coconut Milk', 30)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Protein Rich</span>
+                    <img src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=500&auto=format&fit=crop&q=80" alt="Boiled Egg">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Protein Boiled Egg</h4>
+                        <p>One fully boiled farm fresh egg sprinkled with pepper and salt.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹10</span>
+                            <span class="unit">1 Piece</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Boiled Egg', 10)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Vitamin C</span>
+                    <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=500&auto=format&fit=crop&q=80" alt="Orange Juice">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Orange Juice</h4>
+                        <p>Freshly squeezed natural orange extraction.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹40</span>
+                            <span class="unit">Glass</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Orange Juice', 40)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Hydration</span>
+                    <img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=500&auto=format&fit=crop&q=80" alt="Watermelon Juice">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Watermelon Juice</h4>
+                        <p>Pure cooling and refreshing hydration booster.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹20</span>
+                            <span class="unit">Glass</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Watermelon Juice', 20)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Antioxidant</span>
+                    <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=500&auto=format&fit=crop&q=80" alt="Pomegranate Juice">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Pomegranate Juice</h4>
+                        <p>Rich and refreshing pomegranate juice.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹60</span>
+                            <span class="unit">Glass</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Pomegranate Juice', 60)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Detox</span>
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop&q=80" alt="ABC Detox Juice">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>ABC Detox Juice</h4>
+                        <p>Apple, Beetroot & Carrot power blend.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹50</span>
+                            <span class="unit">Glass</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('ABC Detox Juice', 50)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Energy</span>
+                    <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=80" alt="Banana Honey Smoothie">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Banana Honey Smoothie</h4>
+                        <p>Banana blended with honey and cold milk.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹50</span>
+                            <span class="unit">Glass</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Banana Honey Smoothie', 50)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="text-align:center;margin-bottom:60px;">
+        <button class="hero-btn" onclick="switchPage(2)">
+            Go to Page 2: Subscriptions & Party Packs ➔
+        </button>
+    </div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div id="page2" class="page-view">
+    <div class="menu-section" style="margin-top:30px;">
+        <div class="section-header">
+            <div>
+                <h2>Page 2: Subscriptions, Party Bulk & Wellness Hampers</h2>
+                <p>Designed for regular fitness enthusiasts, offices and family functions in Gobi.</p>
+            </div>
+            <button class="admin-toggle-btn" onclick="switchPage(1)">⬅ Back to Page 1</button>
+        </div>
+
+        <div class="menu-category-title">📅 MONTHLY FRUIT & JUICE SUBSCRIPTION PLANS (Base: 26 Days)</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Custom Days</span>
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80" alt="Monthly Plan">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Monthly Regular Fruit Box</h4>
+                        <p>Daily morning delivery of 300g mixed fresh fruit plate (26-day base plan: ₹2,600).</p>
+                    </div>
+                    
+                    <div class="sub-dates-box">
+                        <label>Subscription Duration:</label>
+                        <input type="date" id="sub-from-1">
+                        <input type="date" id="sub-to-1">
+                    </div>
+
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹2,600</span>
+                            <span class="unit">For 26 Days (Dynamic calc)</span>
+                        </div>
+                        <button class="add-btn" onclick="addDynamicSubscriptionToCart('Monthly Regular Fruit Box Subscription', 2600, 'sub-from-1', 'sub-to-1')">+ Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Fitness Pro</span>
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=80" alt="Fitness Plan">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Monthly Premium & Sprouts Plan</h4>
+                        <p>Daily delivery of 500g exotic fruit plate + sprouts (26-day base plan: ₹3,400).</p>
+                    </div>
+
+                    <div class="sub-dates-box">
+                        <label>Subscription Duration:</label>
+                        <input type="date" id="sub-from-2">
+                        <input type="date" id="sub-to-2">
+                    </div>
+
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹3,400</span>
+                            <span class="unit">For 26 Days (Dynamic calc)</span>
+                        </div>
+                        <button class="add-btn" onclick="addDynamicSubscriptionToCart('Monthly Premium & Sprouts Plan Subscription', 3400, 'sub-from-2', 'sub-to-2')">+ Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Juice Cleanse</span>
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop&q=80" alt="Juice Pass">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Daily Cold Juice Pass</h4>
+                        <p>One fresh natural juice delivered daily (26-day base plan: ₹1,100).</p>
+                    </div>
+
+                    <div class="sub-dates-box">
+                        <label>Subscription Duration:</label>
+                        <input type="date" id="sub-from-3">
+                        <input type="date" id="sub-to-3">
+                    </div>
+
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹1,100</span>
+                            <span class="unit">For 26 Days (Dynamic calc)</span>
+                        </div>
+                        <button class="add-btn" onclick="addDynamicSubscriptionToCart('Daily Cold Juice Pass Subscription', 1100, 'sub-from-3', 'sub-to-3')">+ Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category-title">🎉 PARTY BULK & EVENT CATERING TRAYS</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Family Gathering</span>
+                    <img src="https://images.unsplash.com/photo-1506802913710-40e2e693351f?w=500&auto=format&fit=crop&q=80" alt="Family Tray">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Family Fruit Platter Tray</h4>
+                        <p>Large artistic fruit tray for family gatherings.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹750</span>
+                            <span class="unit">10-12 servings</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Family Fruit Platter Tray (10P)', 750)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Corporate Event</span>
+                    <img src="https://images.unsplash.com/photo-1519996521430-025f992e85a0?w=500&auto=format&fit=crop&q=80" alt="Corporate Box">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Corporate Meeting Box</h4>
+                        <p>Individual hygienically sealed fruit snack boxes.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹1,800</span>
+                            <span class="unit">25 boxes bulk</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Corporate Meeting Box Pack (25)', 1800)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Juice Dispenser</span>
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=80" alt="Juice Dispenser">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Party Juice Dispenser Urn</h4>
+                        <p>Fresh watermelon or orange juice for functions and parties.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹950</span>
+                            <span class="unit">5 Litres</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Party Juice Dispenser Urn (5L)', 950)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category-title">🎁 HEALTH & RECOVERY GIFT HAMPERS</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Get Well Soon</span>
+                    <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&auto=format&fit=crop&q=80" alt="Fruit Basket">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Hospital Recovery Fruit Basket</h4>
+                        <p>Premium fruit basket arranged with ribbon.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹650</span>
+                            <span class="unit">Gift Basket</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Hospital Recovery Fruit Basket', 650)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Celebration Gift</span>
+                    <img src="https://images.unsplash.com/photo-1534482492329-4505f81c7aec?w=500&auto=format&fit=crop&q=80" alt="Luxury Hamper">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Luxury Wellness Gift Hamper</h4>
+                        <p>Exotic fruits, cold-pressed juices and dry nuts assortment.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹1,200</span>
+                            <span class="unit">Luxury Box</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Luxury Wellness Gift Hamper', 1200)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Baby Shower</span>
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=80" alt="Valaikappu Tray">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Valaikappu Traditional Fruit Tray</h4>
+                        <p>Custom traditional fruit arrangement for family ceremonies.</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹1,100</span>
+                            <span class="unit">Special Tray</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Valaikappu Traditional Fruit Tray', 1100)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ORDER HISTORY -->
+<section class="history-section">
+    <div class="section-header">
+        <div>
+            <h2>📦 Order History & Customer Feedback</h2>
+            <p>Track your previous orders and leave ratings.</p>
+        </div>
+    </div>
+    <div class="history-card-container" id="historyCardContainer">
+        <div class="history-card" style="text-align:center;color:var(--text-muted);padding:40px;">
+            <p>No past orders recorded yet.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CHECKOUT -->
+<div class="checkout-container" id="checkout">
+    <div class="checkout-box">
+        <h3>🛒 Complete Your Nutrition Order</h3>
+        <p style="font-size:14px;color:var(--text-muted);">Enter details to generate your WhatsApp order bill.</p>
+        <div style="margin-top:15px;font-size:18px;font-weight:800;color:var(--primary-dark);">
+            Total Bill Amount: <span id="total-amount">₹0</span>
+        </div>
+        <div class="checkout-form-grid">
+            <input type="text" id="cust-name" placeholder="Your Full Name">
+            <input type="text" id="cust-address" placeholder="Delivery Address (Gobi Locality)">
+            <div class="full-width">
+                <select id="delivery-time">
+                    <option value="Morning Delivery">Morning Delivery Slot</option>
+                    <option value="Evening Delivery">Evening Delivery Slot</option>
+                    <option value="Instant Home Delivery">Instant Home Delivery</option>
+                </select>
+            </div>
+        </div>
+        <button class="order-whatsapp-btn" onclick="generateInvoiceAndOrder()">
+            💬 Generate Bill & Send to WhatsApp
+        </button>
+    </div>
+</div>
+
+<!-- CART -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3>🛍️ Your Active Cart</h3>
+            <button class="close-cart" onclick="closeCartModal()">×</button>
+        </div>
+        <div class="cart-items-container" id="cartItemsList">
+            <p style="color:var(--text-muted);text-align:center;margin-top:50px;">Your cart is currently empty.</p>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:20px;">
+            <p style="display:flex;justify-content:space-between;font-weight:700;">
+                <span>Subtotal Amount:</span>
+                <span id="drawer-total">₹0</span>
+            </p>
+            <button class="order-whatsapp-btn" onclick="closeCartModal();document.getElementById('checkout').scrollIntoView({behavior:'smooth'});">
+                Proceed to Checkout Details
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- INVOICE -->
+<div class="invoice-modal" id="invoiceModal">
+    <div class="invoice-card">
+        <h3>🌿 NUTRI CARE - E-INVOICE</h3>
+        <div id="invoiceContent" style="font-size:13px;line-height:1.6;margin-bottom:20px;"></div>
+        <div style="display:flex;gap:10px;justify-content:center;">
+            <button class="add-btn" onclick="proceedToWhatsApp()" style="padding:12px 24px;background:#25D366;color:white;border-color:#25D366;">
+                Confirm & Open WhatsApp
+            </button>
+            <button class="admin-toggle-btn" onclick="closeInvoice()">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p style="font-weight:700;color:white;">NUTRI CARE • Getticheviyur, Gobichettipalayam – 638452</p>
+    <p>Contact Orders: 📞 8610776220 / 💬 8012831424</p>
+    <p style="margin-top:15px;">© 2026 Nutri Care. Lic. No: 22426063000215. All Rights Reserved.</p>
+</footer>
+
+<script>
+let cart = [];
+let allOrders = [];
+let totalRevenue = 0;
+let currentOrderPayload = "";
+
+/* PAGE SWITCH */
+function switchPage(pageNum) {
+    document.getElementById("page1").classList.remove("active-view");
+    document.getElementById("page2").classList.remove("active-view");
+    document.getElementById("nav-page1").classList.remove("active-page");
+    document.getElementById("nav-page2").classList.remove("active-page");
+
+    document.getElementById("page" + pageNum).classList.add("active-view");
+    document.getElementById("nav-page" + pageNum).classList.add("active-page");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ADD REGULAR CART ITEM */
+function addToCart(itemName, itemPrice) {
+    let existingItem = cart.find(item => item.name === itemName && !item.details);
+    if(existingItem) {
+        existingItem.qty += 1;
+    } else {
+        cart.push({ name: itemName, price: itemPrice, qty: 1, details: "" });
+    }
+    updateCartUI();
+}
+
+/* ADD DYNAMIC SUBSCRIPTION WITH 2-MONTH (10%) & 3-MONTH (15%) OFFERS */
+function addDynamicSubscriptionToCart(itemName, baseMonthlyPrice, fromInputId, toInputId) {
+    let fromDateVal = document.getElementById(fromInputId).value;
+    let toDateVal = document.getElementById(toInputId).value;
+
+    if(!fromDateVal || !toDateVal) {
+        alert("Please select both 'From Date' and 'To Date' for your subscription!");
+        return;
+    }
+
+    let start = new Date(fromDateVal);
+    let end = new Date(toDateVal);
+
+    if(end < start) {
+        alert("End date cannot be earlier than start date!");
+        return;
+    }
+
+    let diffTime = Math.abs(end - start);
+    let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+    let baseDays = 26;
+    let dailyRate = baseMonthlyPrice / baseDays;
+    let calculatedPrice = dailyRate * diffDays;
+
+    let offerName = "";
+    // Apply 2 months (~50 to 70 days) -> 10% offer
+    if(diffDays >= 50 && diffDays < 75) {
+        calculatedPrice = calculatedPrice * 0.90; 
+        offerName = " (10% Off - 2 Months)";
+    } 
+    // Apply 3 months (>= 75 days) -> 15% offer
+    else if(diffDays >= 75) {
+        calculatedPrice = calculatedPrice * 0.85; 
+        offerName = " (15% Off - 3 Months)";
+    }
+
+    calculatedPrice = Math.round(calculatedPrice);
+
+    let dateDetailStr = `(${diffDays} Days | From: ${fromDateVal} To: ${toDateVal})${offerName}`;
+    let existingItem = cart.find(item => item.name === itemName && item.details === dateDetailStr);
+
+    if(existingItem) {
+        existingItem.qty += 1;
+    } else {
+        cart.push({
+            name: itemName,
+            price: calculatedPrice,
+            qty: 1,
+            details: dateDetailStr
+        });
+    }
+
+    updateCartUI();
+    alert(`Subscription added! Calculated for ${diffDays} day(s)${offerName}: ₹${calculatedPrice}`);
+}
+
+/* QUANTITY CHANGE */
+function changeQty(itemName, details, delta) {
+    let item = cart.find(i => i.name === itemName && i.details === details);
+    if(item) {
+        item.qty += delta;
+        if(item.qty <= 0) {
+            cart = cart.filter(i => !(i.name === itemName && i.details === details));
+        }
+    }
+    updateCartUI();
+}
+
+/* DELETE ITEM COMPLETELY FROM CART */
+function removeFromCart(itemName, details) {
+    cart = cart.filter(i => !(i.name === itemName && i.details === details));
+    updateCartUI();
+}
+
+/* CALCULATE FINAL AMOUNT WITH MONDAY 2% OFFER */
+function calculateCartTotals() {
+    let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    
+    // Check if today is Monday (Day 1)
+    let today = new Date();
+    let isMonday = (today.getDay() === 1);
+    
+    let finalTotal = subtotal;
+    let mondayDiscountApplied = false;
+
+    if(isMonday && subtotal > 0) {
+        finalTotal = subtotal * 0.98; // 2% off on Monday for all
+        mondayDiscountApplied = true;
+    }
+
+    return {
+        subtotal: subtotal,
+        finalTotal: Math.round(finalTotal),
+        isMonday: mondayDiscountApplied
+    };
+}
+
+/* UPDATE CART UI */
+function updateCartUI() {
+    let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+    let totals = calculateCartTotals();
+
+    let displayTotalText = "₹" + totals.finalTotal;
+    if(totals.isMonday) {
+        displayTotalText += " (🎉 2% Monday Offer Applied!)";
+    }
+
+    document.getElementById("cart-count").innerText = "🛒 Cart (" + totalCount + ")";
+    document.getElementById("total-amount.innerText = ...") // handled via elements below
+    document.getElementById("total-amount").innerHTML = displayTotalText;
+    document.getElementById("drawer-total").innerText = "₹" + totals.subtotal;
+
+    let container = document.getElementById("cartItemsList");
+
+    if(cart.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted);text-align:center;margin-top:50px;">Your cart is currently empty.</p>`;
+        return;
+    }
+
+    container.innerHTML = "";
+
+    cart.forEach(item => {
+        let row = document.createElement("div");
+        row.className = "cart-row";
+
+        let detailsHtml = item.details ? `<br><small style="color:var(--primary); font-weight:600;">${item.details}</small>` : '';
+
+        row.innerHTML = `
+        <div style="flex-grow: 1; padding-right: 10px;">
+            <strong>${item.name}</strong>
+            ${detailsHtml}
+            <br>
+            <span style="color:var(--primary-dark);font-size:12px;font-weight:600;">
+                ₹${item.price} × ${item.qty} = ₹${item.price * item.qty}
+            </span>
+            <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty('${item.name}', '${item.details}', -1)">-</button>
+                <span>${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty('${item.name}', '${item.details}', 1)">+</button>
+            </div>
+        </div>
+        <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+            <strong style="font-size: 15px;">₹${item.price * item.qty}</strong>
+            <button class="delete-item-btn" onclick="removeFromCart('${item.name}', '${item.details}')">🗑️ Delete</button>
+        </div>
+        `;
+        container.appendChild(row);
+    });
+}
+
+/* CART MODAL */
+function openCartModal() { document.getElementById("cartModal").style.display = "flex"; }
+function closeCartModal() { document.getElementById("cartModal").style.display = "none"; }
+
+/* ADMIN */
+function toggleAdminPanel() {
+    const panel = document.getElementById("adminPanel");
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+}
+
+/* GENERATE ORDER */
+function generateInvoiceAndOrder() {
+    let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+    let totals = calculateCartTotals();
+
+    if(totalCount === 0) {
+        alert("Please add at least one item to your cart before ordering!");
+        return;
+    }
+
+    let name = document.getElementById("cust-name").value;
+    let address = document.getElementById("cust-address").value;
+    let timeSlot = document.getElementById("delivery-time").value;
+
+    if(!name || !address) {
+        alert("Please enter your name and delivery address!");
+        return;
+    }
+
+    let itemsListHtml = "";
+    let message = `Hello Nutri Care (Gobi), New Order Invoice:%0A`;
+    message += `👤 Name: ${name}%0A`;
+    message += `📍 Address: ${address}%0A`;
+    message += `⏰ Time: ${timeSlot}%0A%0AItems:%0A`;
+
+    cart.forEach((item, index) => {
+        let detailText = item.details ? ` ${item.details}` : '';
+        itemsListHtml += `${index+1}. ${item.name}${detailText} (Qty: ${item.qty}) - ₹${item.price * item.qty}<br>`;
+        message += `${index+1}. ${item.name}${detailText} * ${item.qty} - ₹${item.price * item.qty}%0A`;
+    });
+
+    if(totals.isMonday) {
+        message += `%0A🎁 Monday Special Offer (2% Off) Applied!`;
+        itemsListHtml += `<br><strong>🎁 Monday Special Offer (2% Off) Applied!</strong>`;
+    }
+
+    message += `%0A*Total Amount: ₹${totals.finalTotal}*`;
+
+    document.getElementById("invoiceContent").innerHTML = `
+        <strong>Customer:</strong> ${name}<br>
+        <strong>Address:</strong> ${address}<br>
+        <strong>Delivery Slot:</strong> ${timeSlot}<br><br>
+        <strong>Ordered Items:</strong><br>${itemsListHtml}<br>
+        <strong>Total Amount: ₹${totals.finalTotal}</strong><br><br>
+        <small>Lic. No: 22426063000215</small>
+    `;
+
+    document.getElementById("invoiceModal").style.display = "flex";
+
+    let newOrderObj = {
+        id: "NC-" + Math.floor(1000 + Math.random() * 9000),
+        name: name,
+        address: address,
+        time: timeSlot,
+        total: totals.finalTotal,
+        date: new Date().toLocaleDateString(),
+        items: [...cart],
+        rating: 0,
+        feedbackText: ""
+    };
+
+    allOrders.unshift(newOrderObj);
+    totalRevenue += totals.finalTotal;
+    updateAdminDashboard();
+    updateHistoryUI();
+
+    cart = [];
+    updateCartUI();
+    currentOrderPayload = message;
+}
+
+/* WHATSAPP */
+function proceedToWhatsApp() {
+    let whatsappUrl = `https://wa.me/918012831424?text=${currentOrderPayload}`;
+    window.open(whatsappUrl, "_blank");
+    closeInvoice();
+}
+
+function closeInvoice() { document.getElementById("invoiceModal").style.display = "none"; }
+
+/* ADMIN DASHBOARD */
+function updateAdminDashboard() {
+    document.getElementById("stat-orders").innerText = allOrders.length;
+    document.getElementById("stat-revenue").innerText = "₹" + totalRevenue;
+
+    let logBox = document.getElementById("adminOrderLog");
+    logBox.innerHTML = "";
+
+    if(allOrders.length === 0) {
+        logBox.innerHTML = `<p style="color:#9ca3af;text-align:center;">No recent orders recorded yet.</p>`;
+        return;
+    }
+
+    allOrders.forEach(ord => {
+        let row = document.createElement("div");
+        row.className = "order-item-row";
+        row.innerHTML = `<strong>#${ord.id} ${ord.name}</strong> (${ord.address}) - ₹${ord.total} <span style="color:#c4b5fd;float:right;">Success</span>`;
+        logBox.appendChild(row);
+    });
+}
+
+/* ORDER HISTORY */
+function updateHistoryUI() {
+    let container = document.getElementById("historyCardContainer");
+
+    if(allOrders.length === 0) {
+        container.innerHTML = `<div class="history-card" style="text-align:center;color:var(--text-muted);padding:40px;"><p>No past orders recorded yet.</p></div>`;
+        return;
+    }
+
+    container.innerHTML = "";
+
+    allOrders.forEach((order, index) => {
+        let itemsSummary = order.items.map(i => `${i.name} ${i.details ? i.details : ''} (x${i.qty})`).join(", ");
+
+        let card = document.createElement("div");
+        card.className = "history-card";
+        card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+            <h4>Order #${order.id}</h4>
+            <span style="background:var(--primary-light);color:var(--primary-dark);padding:4px 10px;border-radius:20px;font-size:11px;">Delivered / Active</span>
+        </div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">
+            <p><strong>Date:</strong> ${order.date}</p>
+            <p><strong>Slot:</strong> ${order.time}</p>
+            <p><strong>Items:</strong> ${itemsSummary}</p>
+            <p style="margin-top:6px;font-weight:700;color:var(--text-main);">Total Paid: ₹${order.total}</p>
+        </div>
+        <div style="border-top:1px dashed var(--border);padding-top:12px;margin-top:12px;">
+            <p style="font-size:12px;font-weight:700;margin-bottom:6px;">Rate your fresh delivery:</p>
+            <div class="rating-box" id="rating-stars-${index}">
+                <span class="star ${order.rating>=1?'active':''}" onclick="setRating(${index},1)">★</span>
+                <span class="star ${order.rating>=2?'active':''}" onclick="setRating(${index},2)">★</span>
+                <span class="star ${order.rating>=3?'active':''}" onclick="setRating(${index},3)">★</span>
+                <span class="star ${order.rating>=4?'active':''}" onclick="setRating(${index},4)">★</span>
+                <span class="star ${order.rating>=5?'active':''}" onclick="setRating(${index},5)">★</span>
+            </div>
+            <textarea class="feedback-input" id="feedback-text-${index}" placeholder="Share comments...">${order.feedbackText}</textarea>
+            <button class="submit-feedback-btn" onclick="submitFeedback(${index})">Submit Feedback</button>
+        </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+/* RATING */
+function setRating(orderIndex, starCount) {
+    allOrders[orderIndex].rating = starCount;
+    updateHistoryUI();
+}
+
+/* FEEDBACK */
+function submitFeedback(orderIndex) {
+    let text = document.getElementById(`feedback-text-${orderIndex}`).value;
+    allOrders[orderIndex].feedbackText = text;
+    alert("Thank you! Your feedback and rating for order #" + allOrders[orderIndex].id + " have been recorded successfully.");
+}
+</script>
+
+</body>
+</html>
