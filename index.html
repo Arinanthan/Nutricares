@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nutri Care - Fresh Fruit & Juice Studio (Gobi)</title>
+    <title>Nutri Care - Fresh Fruit, Juice & Chicken Studio (Gobi)</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -105,7 +105,7 @@
 
         nav {
             display: flex;
-            gap: 25px;
+            gap: 20px;
         }
 
         nav a {
@@ -771,7 +771,7 @@
 <div class="top-announcement">
     <span>
         ✨ 100% Freshly Cut & Hygienically Packed • Direct Home Delivery across Gobi & Localities!
-        🍏 Free Delivery on Orders Above ₹200! 🚀[cite: 5]
+        🍏 Free Delivery on Orders Above ₹200! 🚀
     </span>
 </div>
 
@@ -783,10 +783,13 @@
 
     <nav>
         <a id="nav-page1" class="active-page" onclick="switchPage(1)">
-            Page 1: Home & Fresh Menu
+            Page 1: Fruits & Juices
         </a>
         <a id="nav-page2" onclick="switchPage(2)">
-            Page 2: Subscriptions & Special Packs
+            Page 2: Subscriptions & Packs
+        </a>
+        <a id="nav-page3" onclick="switchPage(3)" style="color:#16a34a; font-weight:800;">
+            🍗 Page 3: Chicken Menu
         </a>
     </nav>
 
@@ -1397,7 +1400,186 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
+
+<!-- ================= PAGE 3: CHICKEN MENU ================= -->
+<div id="page3" class="page-view">
+    <div class="menu-section" style="margin-top:30px;">
+        <div class="section-header">
+            <div>
+                <h2>Page 3: Chicken Menu (100% Fresh Daily)</h2>
+                <p>High Protein • Fresh • Hygienic[cite: 1]. Build Muscle, Boost Immunity, Weight Control, Energy Booster[cite: 1].</p>
+            </div>
+            <button class="admin-toggle-btn" onclick="switchPage(1)">⬅ Back to Home</button>
+        </div>
+
+        <div class="menu-category-title">💪 HIGH PROTEIN CHICKEN PORTIONS & COMBOS[cite: 1]</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">100g Portion</span>
+                    <img src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=500&auto=format&fit=crop&q=80" alt="Chicken Protein Salad">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Chicken Protein Salad</h4>
+                        <p>(With 1 Boiled Egg) Tender chicken pieces with fresh salad, vegetables & healthy seasoning[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹129</span>
+                            <span class="unit">100g Portion[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Chicken Protein Salad (100g)', 129)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">200g Portion</span>
+                    <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=500&auto=format&fit=crop&q=80" alt="Chicken Grilled / Tandoori">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Chicken Grilled / Tandoori</h4>
+                        <p>Juicy grilled chicken with signature spices served with fresh salad & lemon[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹199</span>
+                            <span class="unit">200g Portion[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Chicken Grilled / Tandoori (200g)', 199)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">500g Portion</span>
+                    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500&auto=format&fit=crop&q=80" alt="Chicken Fry">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Chicken Fry</h4>
+                        <p>Classic South Indian style chicken fry with aromatic spices, onion & curry leaves[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹449</span>
+                            <span class="unit">500g Portion[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Chicken Fry (500g)', 449)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">750g Portion</span>
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&auto=format&fit=crop&q=80" alt="Chicken Roast / Grill">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Chicken Roast / Grill</h4>
+                        <p>Slow cooked roast/grilled chicken with rich masala, served with salad[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹649</span>
+                            <span class="unit">750g Portion[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Chicken Roast / Grill (750g)', 649)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">1 KG Portion</span>
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&auto=format&fit=crop&q=80" alt="Chicken Special Combo">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Chicken Special Combo</h4>
+                        <p>Best of both worlds! Crispy Fry + Juicy Grill + Fresh Salad. Perfect for family & gatherings[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹849</span>
+                            <span class="unit">1 KG Portion[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Chicken Special Combo (1KG)', 849)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category-title">➕ CHICKEN ADD-ONS[cite: 1]</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Add-on</span>
+                    <img src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=500&auto=format&fit=crop&q=80" alt="Boiled Egg">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Boiled Egg</h4>
+                        <p>One full farm-fresh boiled egg[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹10</span>
+                            <span class="unit">1 Full Egg[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Add-on: Boiled Egg (1 Full Egg)', 10)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Add-on</span>
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=80" alt="Extra Salad">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Extra Salad</h4>
+                        <p>Fresh crisp vegetable salad portion[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹20</span>
+                            <span class="unit">Portion[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Add-on: Extra Salad', 20)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-img-container">
+                    <span class="tag-badge-float">Add-on</span>
+                    <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=500&auto=format&fit=crop&q=80" alt="Sliced Onion & Lemon">
+                </div>
+                <div class="menu-card-content">
+                    <div class="item-info">
+                        <h4>Sliced Onion & Lemon</h4>
+                        <p>Freshly sliced onion rings and juicy lemon wedges[cite: 1].</p>
+                    </div>
+                    <div class="card-footer-row">
+                        <div>
+                            <span class="price">₹10</span>
+                            <span class="unit">Portion[cite: 1]</span>
+                        </div>
+                        <button class="add-btn" onclick="addToCart('Add-on: Sliced Onion & Lemon', 10)">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- ORDER HISTORY -->
@@ -1493,8 +1675,10 @@ let currentOrderPayload = "";
 function switchPage(pageNum) {
     document.getElementById("page1").classList.remove("active-view");
     document.getElementById("page2").classList.remove("active-view");
+    document.getElementById("page3").classList.remove("active-view");
     document.getElementById("nav-page1").classList.remove("active-page");
     document.getElementById("nav-page2").classList.remove("active-page");
+    document.getElementById("nav-page3").classList.remove("active-page");
 
     document.getElementById("page" + pageNum).classList.add("active-view");
     document.getElementById("nav-page" + pageNum).classList.add("active-page");
@@ -1513,7 +1697,7 @@ function addToCart(itemName, itemPrice) {
     updateCartUI();
 }
 
-/* ADD DYNAMIC SUBSCRIPTION WITH 2-MONTH (10%) & 3-MONTH (15%) OFFERS */
+/* ADD DYNAMIC SUBSCRIPTION BASED ON DATE RANGE (26 Days Base) */
 function addDynamicSubscriptionToCart(itemName, baseMonthlyPrice, fromInputId, toInputId) {
     let fromDateVal = document.getElementById(fromInputId).value;
     let toDateVal = document.getElementById(toInputId).value;
@@ -1536,23 +1720,9 @@ function addDynamicSubscriptionToCart(itemName, baseMonthlyPrice, fromInputId, t
 
     let baseDays = 26;
     let dailyRate = baseMonthlyPrice / baseDays;
-    let calculatedPrice = dailyRate * diffDays;
+    let calculatedPrice = Math.round(dailyRate * diffDays);
 
-    let offerName = "";
-    // Apply 2 months (~50 to 70 days) -> 10% offer
-    if(diffDays >= 50 && diffDays < 75) {
-        calculatedPrice = calculatedPrice * 0.90; 
-        offerName = " (10% Off - 2 Months)";
-    } 
-    // Apply 3 months (>= 75 days) -> 15% offer
-    else if(diffDays >= 75) {
-        calculatedPrice = calculatedPrice * 0.85; 
-        offerName = " (15% Off - 3 Months)";
-    }
-
-    calculatedPrice = Math.round(calculatedPrice);
-
-    let dateDetailStr = `(${diffDays} Days | From: ${fromDateVal} To: ${toDateVal})${offerName}`;
+    let dateDetailStr = `(${diffDays} Days | From: ${fromDateVal} To: ${toDateVal})`;
     let existingItem = cart.find(item => item.name === itemName && item.details === dateDetailStr);
 
     if(existingItem) {
@@ -1567,7 +1737,7 @@ function addDynamicSubscriptionToCart(itemName, baseMonthlyPrice, fromInputId, t
     }
 
     updateCartUI();
-    alert(`Subscription added! Calculated for ${diffDays} day(s)${offerName}: ₹${calculatedPrice}`);
+    alert(`Subscription added! Calculated for ${diffDays} day(s): ₹${calculatedPrice}`);
 }
 
 /* QUANTITY CHANGE */
@@ -1588,43 +1758,14 @@ function removeFromCart(itemName, details) {
     updateCartUI();
 }
 
-/* CALCULATE FINAL AMOUNT WITH MONDAY 2% OFFER */
-function calculateCartTotals() {
-    let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    
-    // Check if today is Monday (Day 1)
-    let today = new Date();
-    let isMonday = (today.getDay() === 1);
-    
-    let finalTotal = subtotal;
-    let mondayDiscountApplied = false;
-
-    if(isMonday && subtotal > 0) {
-        finalTotal = subtotal * 0.98; // 2% off on Monday for all
-        mondayDiscountApplied = true;
-    }
-
-    return {
-        subtotal: subtotal,
-        finalTotal: Math.round(finalTotal),
-        isMonday: mondayDiscountApplied
-    };
-}
-
 /* UPDATE CART UI */
 function updateCartUI() {
     let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-    let totals = calculateCartTotals();
-
-    let displayTotalText = "₹" + totals.finalTotal;
-    if(totals.isMonday) {
-        displayTotalText += " (🎉 2% Monday Offer Applied!)";
-    }
+    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
     document.getElementById("cart-count").innerText = "🛒 Cart (" + totalCount + ")";
-    document.getElementById("total-amount.innerText = ...") // handled via elements below
-    document.getElementById("total-amount").innerHTML = displayTotalText;
-    document.getElementById("drawer-total").innerText = "₹" + totals.subtotal;
+    document.getElementById("total-amount").innerText = "₹" + totalPrice;
+    document.getElementById("drawer-total").innerText = "₹" + totalPrice;
 
     let container = document.getElementById("cartItemsList");
 
@@ -1677,7 +1818,7 @@ function toggleAdminPanel() {
 /* GENERATE ORDER */
 function generateInvoiceAndOrder() {
     let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-    let totals = calculateCartTotals();
+    let totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
     if(totalCount === 0) {
         alert("Please add at least one item to your cart before ordering!");
@@ -1705,19 +1846,14 @@ function generateInvoiceAndOrder() {
         message += `${index+1}. ${item.name}${detailText} * ${item.qty} - ₹${item.price * item.qty}%0A`;
     });
 
-    if(totals.isMonday) {
-        message += `%0A🎁 Monday Special Offer (2% Off) Applied!`;
-        itemsListHtml += `<br><strong>🎁 Monday Special Offer (2% Off) Applied!</strong>`;
-    }
-
-    message += `%0A*Total Amount: ₹${totals.finalTotal}*`;
+    message += `%0A*Total Amount: ₹${totalPrice}*`;
 
     document.getElementById("invoiceContent").innerHTML = `
         <strong>Customer:</strong> ${name}<br>
         <strong>Address:</strong> ${address}<br>
         <strong>Delivery Slot:</strong> ${timeSlot}<br><br>
         <strong>Ordered Items:</strong><br>${itemsListHtml}<br>
-        <strong>Total Amount: ₹${totals.finalTotal}</strong><br><br>
+        <strong>Total Amount: ₹${totalPrice}</strong><br><br>
         <small>Lic. No: 22426063000215</small>
     `;
 
@@ -1728,7 +1864,7 @@ function generateInvoiceAndOrder() {
         name: name,
         address: address,
         time: timeSlot,
-        total: totals.finalTotal,
+        total: totalPrice,
         date: new Date().toLocaleDateString(),
         items: [...cart],
         rating: 0,
@@ -1736,7 +1872,7 @@ function generateInvoiceAndOrder() {
     };
 
     allOrders.unshift(newOrderObj);
-    totalRevenue += totals.finalTotal;
+    totalRevenue += totalPrice;
     updateAdminDashboard();
     updateHistoryUI();
 
